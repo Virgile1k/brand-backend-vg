@@ -1,4 +1,4 @@
-const errorMessage = (errorMsge, res) => {
+const errorMessage = (res, errorMsge) => {
   res.status(500).json({
     messag: errorMsge,
   });
