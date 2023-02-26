@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import mongoose from "mongoose";
+import routes from "./routes/index.js";
 
 mongoose.set("strictQuery", false);
 //config dotenv
@@ -15,7 +16,7 @@ const app = express();
 //use an app instance
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use("/api/v1/", routes);
 //Define port and host
 const host = process.env.HOST;
 const port = process.env.PORT;
