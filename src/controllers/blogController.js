@@ -33,5 +33,17 @@ class blogController {
       errorMessage(res, errorMsge);
     }
   }
+  static async getAllBlogs(req, res) {
+    try {
+      const blogs = await Blog.find();
+      const status = 200;
+      const msge = ` ${blogs.length} blog successfully retrieved`;
+      const data = blogs;
+      succcessMessage(res, status, msge, data);
+    } catch (error) {
+      const errorMsge = error.message;
+      errorMessage(res, errorMessage);
+    }
+  }
 }
 export default blogController;
