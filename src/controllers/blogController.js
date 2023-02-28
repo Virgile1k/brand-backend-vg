@@ -4,35 +4,11 @@ import succcessMessage from "../utils/successHandle.js";
 import failureMessage from "../utils/failureHandle.js";
 class blogController {
   static async createBlog(req, res) {
-    const {
-      blogMainTitle,
-      blogTitle,
-      blogAuthor,
-      blogImage,
-
-      blogSummary,
-      blogDescription,
-      publishedDate,
-    } = req.body;
-    try {
-      const newBlog = await Blog.create({
-        blogMainTitle,
-        blogTitle,
-        blogAuthor,
-        blogImage,
-
-        blogSummary,
-        blogDescription,
-        publishedDate,
-      });
-      const status = 201;
-      const msge = "blog successfully created";
-      const data = newBlog;
-      succcessMessage(res, status, msge, data);
-    } catch (error) {
-      const errorMsge = error.message;
-      errorMessage(res, errorMsge);
-    }
+    const newBlog = await Blog.create(req.body);
+    const status = 201;
+    const msge = "blog successfully created";
+    const data = newBlog;
+    succcessMessage(res, status, msge, data);
   }
   static async getAllBlogs(req, res) {
     try {

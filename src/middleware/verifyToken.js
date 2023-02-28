@@ -1,34 +1,46 @@
 import TokenAuth from "../helpers/authToken.js";
-import errorMessage from "../utils/errorHandle.js";
-import succcessMessage from "../utils/successHandle.js";
-import failureMessage from "../utils/failureHandle.js";
 
-const isUserExist = async (req, res, next) => {
+import User from "../models/User.js";
+
+const verifyUserToken = async (req, res, next) => {
   try {
     const token = req.header("x-auth-token");
     //if token doesn't exist
     if (!token) {
-      const status = 404;
-      const msge = `no token provided`;
-
-      failureMessage(res, status, msge);
+      return res.status(404).json({ error: "no token provided" });
     }
     //cheque if token is valid
-    const data = TokenAuth.decodeToken(token);
-    if (!data) {
-      const status = 404;
-      const msge = `invalid token or token expired`;
-
-      failureMessage(res, status, msge);
+    const payload = TokenAuth.decodeToken(token);
+    const { name } = payload;
+    if (name === "JsonWebTokenError") {
+      return res.status(404).json({
+        message: "unauthorized, invalid token",
+      });
+    } else if (name === "TokenExpiredError") {
+      return res.status(404).json({
+        message: "token expired, invalid token",
+      });
     }
-    // req.user = data.user;
 
+    const user = await User.findOne({ _id: payload?.User?._id }).select(
+      "-password"
+    );
+    if (!user) {
+      return res.status(404).json({
+        message: `user from token not exist, invalid token`,
+      });
+    }
+
+    req.user = user;
+    req.token = token;
+    req.body.user = user._id;
     return next();
   } catch (error) {
     console.log(error);
-    const errorMsge = error.message;
-    errorMessage(res, errorMsge);
+    res.status(400).json({
+      message: `failed to verify token`,
+    });
   }
 };
 
-export default isUserExist;
+export default verifyUserToken;

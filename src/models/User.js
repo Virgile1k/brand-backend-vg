@@ -2,22 +2,22 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
   fullName: {
     type: String,
-    required: true,
+    required: [true, "please provide a fullName"],
   },
   email: {
     type: String,
-    required: true,
+    required: [true, "please provide an email"],
     lowerCase: true,
     unique: true,
   },
   password: {
     type: String,
     minLength: 8,
-    required: true,
+    required: [true, "please provide a password"],
   },
   repeatPassword: {
     type: String,
-    required: true,
+    required: [true, "please provide a repeated password"],
   },
   role: {
     type: String,
@@ -29,5 +29,5 @@ const userSchema = new mongoose.Schema({
     default: Date.now(),
   },
 });
-const User = mongoose.model("User", userSchema);
-export default User;
+const user = mongoose.model("User", userSchema);
+export default user;
