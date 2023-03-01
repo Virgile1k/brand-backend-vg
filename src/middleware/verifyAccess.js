@@ -2,8 +2,9 @@ import errorMessage from "../utils/errorHandle.js";
 import succcessMessage from "../utils/successHandle.js";
 import failureMessage from "../utils/failureHandle.js";
 import TokenAuth from "../helpers/authToken.js";
+import UserModel from "../models/User.js";
 
-const verifyAccess = (req, res, next) => {
+const verifyToken = async (req, res, next) => {
   const token = req.header("x-auth-token");
   console.log(token);
   //cheque if the request has an authorization header
@@ -21,8 +22,13 @@ const verifyAccess = (req, res, next) => {
         return res.status(401).json({
           message: "unauthorized, invalid token",
         });
+      } else if (payload.role == "user") {
+        return res.status(401).json({
+          message: "You don't have access to this api",
+        });
+      } else {
+        return next();
       }
-      next();
     } catch (error) {
       console.log(error);
       res.status(404).json({
@@ -32,4 +38,4 @@ const verifyAccess = (req, res, next) => {
   }
 };
 
-export default verifyAccess;
+export default verifyToken;
