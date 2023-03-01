@@ -53,4 +53,5 @@ blogSchema.pre(/^find/, function (next) {
   next();
 });
 const Blog = mongoose.model("Blog", blogSchema);
+
 export default Blog;
