@@ -1,6 +1,6 @@
 import express from "express";
 import commentController from "../controllers/commentController.js";
-import verifyToken from "../middleware/verifyToken.js";
+// import verifyToken from "../middleware/verifyToken.js";
 import verifyAccess from "../middleware/verifyAccess.js";
 
 const router = express.Router();

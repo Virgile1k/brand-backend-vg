@@ -4,6 +4,8 @@ import succcessMessage from "../utils/successHandle.js";
 import failureMessage from "../utils/failureHandle.js";
 class blogController {
   static async createBlog(req, res) {
+    //dupassingemo kugirango ibya user ibibike
+    // req.body.user = req.user._id;
     const newBlog = await Blog.create(req.body);
     const status = 201;
     const msge = "blog successfully created";
