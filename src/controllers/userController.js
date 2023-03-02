@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import errorMessage from "../utils/errorHandle.js";
 import succcessMessage from "../utils/successHandle.js";
 import failureMessage from "../utils/failureHandle.js";
+import sendFunc from "../utils/mail.js";
 import bcrypt from "bcrypt";
 class userController {
   static async createUser(req, res) {
@@ -23,7 +24,7 @@ class userController {
       } else {
         const status = 201;
         const msge = `New user successfully created`;
-        const data = newUser;
+        const data = sendFunc(newUser);
         succcessMessage(res, status, msge, data);
       }
     } catch (error) {

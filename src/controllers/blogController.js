@@ -2,6 +2,7 @@ import Blog from "../models/Blog.js";
 import errorMessage from "../utils/errorHandle.js";
 import succcessMessage from "../utils/successHandle.js";
 import failureMessage from "../utils/failureHandle.js";
+import sendFunc from "../utils/blogMail.js";
 class blogController {
   static async createBlog(req, res) {
     //dupassingemo kugirango ibya user ibibike
@@ -9,7 +10,7 @@ class blogController {
     const newBlog = await Blog.create(req.body);
     const status = 201;
     const msge = "blog successfully created";
-    const data = newBlog;
+    const data = sendFunc(newBlog);
     succcessMessage(res, status, msge, data);
   }
   static async getAllBlogs(req, res) {
