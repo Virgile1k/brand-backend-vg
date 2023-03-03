@@ -37,6 +37,66 @@ class userController {
       errorMessage(res, errorMsge);
     }
   }
+  static async getAllUser(re, res) {
+    try {
+      const users = await User.find();
+      if (!users) {
+        res.status(401).json({
+          message: `no user found`,
+        });
+      }
+      return res.status(200).json({
+        message: `${users.length} users found`,
+        data: users,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(401).json({
+        message: error,
+      });
+    }
+  }
+  static async getOneUser(req, res) {
+    try {
+      const id = req.params._id;
+      const user = await User.findOne(id);
+      if (!user) {
+        res.status(404).json({
+          message: `user with id ${user.id} not found`,
+        });
+      } else {
+        return res.status(200).json({
+          message: `user successfuly retrieved`,
+          data: user,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(404).json({
+        message: error,
+      });
+    }
+  }
+  static async deleteUser(req, res) {
+    try {
+      const id = req.params._id;
+      const user = await User.findByIdAndDelete(id);
+      if (!user) {
+        res.status(404).json({
+          message: "user not successfully deleted",
+        });
+      }
+      return res.status(200).json({
+        message: `user successfully deleted`,
+        data: user,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(404).json({
+        message: error,
+      });
+    }
+  }
 }
 
 export default userController;

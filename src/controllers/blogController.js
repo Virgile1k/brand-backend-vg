@@ -3,11 +3,19 @@ import errorMessage from "../utils/errorHandle.js";
 import succcessMessage from "../utils/successHandle.js";
 import failureMessage from "../utils/failureHandle.js";
 import sendFunc from "../utils/blogMail.js";
+import User from "../models/User.js";
 class blogController {
   static async createBlog(req, res) {
     //dupassingemo kugirango ibya user ibibike
     // req.body.user = req.user._id;
+
     const newBlog = await Blog.create(req.body);
+
+    if (!newBlog) {
+      res.status(401).json({
+        message: `blog not succesfuly created`,
+      });
+    }
     const status = 201;
     const msge = "blog successfully created";
     const data = sendFunc(newBlog);
