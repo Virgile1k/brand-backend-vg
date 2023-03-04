@@ -16,6 +16,9 @@ const app = express();
 //use an app instance
 app.use(cors());
 app.use(bodyParser.json());
+app.get("/", (req, res) => {
+  res.status(200).send(`<h1>hello world</h1>`);
+});
 app.use("/api/v1/", routes);
 //Define port and host
 const host = process.env.HOST;

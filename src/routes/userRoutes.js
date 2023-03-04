@@ -10,7 +10,7 @@ router.post(
   Validator.validateInput,
   userController.createUser
 );
-router.get("/all", verifyAccess, userController.getAllUser);
+router.get("/all", userController.getAllUser);
 router.get("/:id", verifyAccess, userController.getOneUser);
 router.delete("/:id", verifyAccess, userController.deleteUser);
 
