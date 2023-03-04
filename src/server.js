@@ -29,7 +29,7 @@ const port = process.env.PORT;
 
 //our mongodb instance
 const con = () => {
-  mongoose.connect(process.env.DATABASE_URL, {
+  mongoose.connect(process.env.MONGODB_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });
