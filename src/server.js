@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import morgan from "morgan";
+// import morgan from "morgan";
 import mongoose from "mongoose";
 import routes from "./routes/index.js";
 
@@ -25,7 +25,7 @@ const host = process.env.HOST;
 const port = process.env.PORT;
 
 //morgan for logs
-if (process.env.NODE_ENV == "development") app.use(morgan);
+// if (process.env.NODE_ENV == "development") app.use(morgan);
 
 //our mongodb instance
 const con = () => {
