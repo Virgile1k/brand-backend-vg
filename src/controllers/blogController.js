@@ -17,8 +17,18 @@ class blogController {
       });
     }
     const status = 201;
-    const msge = "blog successfully created";
-    const data = sendFunc(newBlog);
+    const msge = `blog successfully created`;
+    const users = await User.find();
+
+    users.map((user) => {
+      const userEmails = user.email;
+      const newString = userEmails.toString();
+      console.log(newString);
+      // return sendFunc()
+    });
+
+    let emailsssss = "user@gmail.com,user2@gmail.com";
+    const data = newBlog;
     succcessMessage(res, status, msge, data);
   }
   static async getAllBlogs(req, res) {

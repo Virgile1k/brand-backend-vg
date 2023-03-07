@@ -8,7 +8,7 @@ describe("testing user's api", () => {
     expect(res.status).toBe(200);
 
     expect(res.data).toEqual({
-      message: "3 users found",
+      message: "5 users found",
       data: [
         {
           _id: "63feb9858330117960821ca7",
@@ -41,6 +41,28 @@ describe("testing user's api", () => {
           repeatPassword: "Cycy@1234",
           role: "admin",
           registered: "2023-03-01T23:57:10.454Z",
+          __v: 0,
+        },
+        {
+          _id: "64022518aa1028e41c8a10a0",
+          fullName: "david",
+          email: "tuyishmirend@gmail.com",
+          password:
+            "$2b$10$VhU3wJFLp1EwVNS6NzOQiOQpSzapn.6BmokwSKx3InYdi8DGBJeO.",
+          repeatPassword: "Cycy@1234",
+          role: "user",
+          registered: "2023-03-03T16:47:11.471Z",
+          __v: 0,
+        },
+        {
+          _id: "6407466ebbe6af8c6c088902",
+          fullName: "david",
+          email: "kacynthian@gmail.com",
+          password:
+            "$2b$10$xLp3h5EtzEtlA4NdWWeqNOP4p5St7PMgilYHzW7HGvUcDl.UvYToi",
+          repeatPassword: "Cycy@1234",
+          role: "user",
+          registered: "2023-03-07T14:13:01.969Z",
           __v: 0,
         },
       ],

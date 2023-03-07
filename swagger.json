@@ -1,0 +1,284 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "my_brand API",
+    "description": "my_brand, is a personale blog api documentation",
+    "contact": {
+      "name": "KAYITARE Cynthia",
+      "email": "kacynthian@gmail.com"
+    }
+  },
+  "host": "http://localhost:3030/api/v1",
+  "schemes": ["http", "https"],
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "create a new user",
+        "parameters": [
+          {
+            "name": "user credentials",
+            "in": "body",
+            "description": "Password and email of a user. password and repeatPassword must have the same value",
+            "required": true,
+            "schema": {
+              "example": {
+                "fullName": "KAYITARE Cynthia",
+                "email": "kacynthian@gmail.com",
+                "password": "Cycy@1234",
+                "repeatPassword": "Cycy@1234"
+              }
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "New user successfully created"
+          },
+          "403": {
+            "description": "Email is Arleady Exist"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Authorization"],
+        "summary": "user login",
+        "parameters": [
+          {
+            "name": "user credential",
+            "in": "body",
+            "description": "email and passowrd of a user",
+            "required": "true",
+            "schema": {
+              "example": {
+                "email": "kacynthian@gmail.com",
+                "password": "Cycy@1234"
+              }
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "user successfully logged in"
+          },
+          "401": {
+            "description": "Invalid email or Passowrd"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/blog": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": ["Blogs"],
+        "summary": "Post a new blog",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+
+        "parameters": [
+          {
+            "in": "formData",
+            "name": " blogMainTitle",
+            "description": "blog main title",
+            "type": " string"
+          },
+          {
+            "in": "formData",
+            "name": " blogTitle",
+            "description": "blog title",
+            "type": " string"
+          },
+          {
+            "in": "formData",
+            "name": " blogAuthor",
+            "description": "blog Author",
+            "type": " string"
+          },
+          {
+            "in": "formData",
+            "name": " blogImage",
+            "description": "blog Image",
+            "type": " string"
+          },
+          {
+            "in": "formData",
+            "name": " blogSummary",
+            "description": "blog Summary",
+            "type": " string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "blog successfully created!"
+          },
+          "401": {
+            "description": "Validation fails"
+          },
+          "404": {
+            "description": "token error"
+          },
+          "500": {
+            "description": "server error"
+          }
+        }
+      },
+
+      "get": {
+        "summary": "get all blogs posted.",
+        "description": "it shows a list of all blogs created.",
+        "tags": ["Blogs"],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/blog/{id}": {
+      "get": {
+        "tags": ["Blogs"],
+        "summary": "Find blog by ID",
+        "description": "Returns a single blog",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Return ID of a blogs with it's data",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " blog with idnumber retrieved successfuly"
+          },
+          "404": {
+            "description": "blog with idnumber not found"
+          }
+        }
+      },
+      "patch": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": ["Blogs"],
+        "summary": "Update the blog",
+        "description": "Update the blog",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "blogID",
+            "in": "path",
+            "description": "ID of the blog that needs to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "blogMainTitle",
+            "in": "formData",
+            "description": "Update main title of the blog",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "blogTitle",
+            "in": "formData",
+            "description": "Update title of the blog",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "blogAuthor",
+            "in": "formData",
+            "description": "Update blogAuthor of the blog",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "blogImage",
+            "in": "formData",
+            "description": "Update blogImage of the blog",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": " blogSummary",
+            "in": "formData",
+            "description": "Update blogSummary of the blog",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "blogDescription",
+            "in": "formData",
+            "description": "Update blogDescription of the blog",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " blog with idnumber successfuly updated"
+          },
+          "401": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "You don't have access to this api"
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": ["Blogs"],
+        "summary": "Delete the blog",
+        "description": "Delete the single blog",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "blogID",
+            "in": "path",
+            "description": "blog id to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "blog successfuly deleted"
+          },
+          "404": {
+            "description": "blog not found"
+          }
+        }
+      }
+    }
+  }
+}

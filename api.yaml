@@ -1,0 +1,31 @@
+swagger: "2.0"
+info:
+  title: my_Brand API
+  description: This is my own web (Portfolio)
+  version: 1.0
+  contact:
+    email: kacynthian@gmail.com
+    name: KAYITARE Cynthia
+  lisence:
+    name: Apache 2.0
+    url: "http://apache.org"
+  servers:
+    host: "http://localhost:3030"
+    description: This is my local server
+    -url: "https://long-blue-firefly-vest.cyclic.app/"
+    description: This is my host backend
+schemes: [http,https]
+paths:
+  /api/v1/user/all:
+    get:
+      summary: Returns a string
+      description: It just returning a fake string
+      responses:
+        200:
+          description: Success
+          schema: 
+            type: string
+        404:
+          description: User Error
+        500:
+          description: Internal Server Error
