@@ -10,7 +10,7 @@
     }
   },
   "host": "long-blue-firefly-vest.cyclic.app/api/v1",
-  "schemes": ["http", "https"],
+  "schemes": ["https", "http"],
   "paths": {
     "/user": {
       "post": {
