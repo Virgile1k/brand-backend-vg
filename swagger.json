@@ -9,7 +9,7 @@
       "email": "kacynthian@gmail.com"
     }
   },
-  "host": "localhost:3030/api/v1",
+  "host": "long-blue-firefly-vest.cyclic.app/api/v1",
   "schemes": ["http", "https"],
   "paths": {
     "/user": {
