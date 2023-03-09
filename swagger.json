@@ -120,6 +120,12 @@
             "name": " blogSummary",
             "description": "blog Summary",
             "type": " string"
+          },
+          {
+            "in": "formData",
+            "name": " blogDescription",
+            "description": "blog description",
+            "type": " string"
           }
         ],
         "responses": {
@@ -149,6 +155,53 @@
           },
           "500": {
             "description": "Server error"
+          }
+        }
+      }
+    },
+    "/comment/{id}": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": ["Blogs"],
+        "summary": "Create a new comment",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of blog to comment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user id",
+            "in": "path",
+            "description": "ID of user to comment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Comment",
+            "description": "Comment Body",
+            "schema": {
+              "example": {
+                "content": "iyo blog shahu"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comment added successfully!"
+          },
+          "401": {
+            "description": "Validation fails"
           }
         }
       }
@@ -277,6 +330,167 @@
           "404": {
             "description": "blog not found"
           }
+        }
+      }
+    },
+
+    "/message": {
+      "post": {
+        "tags": ["Queries"],
+        "summary": "Create a new query",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Query",
+            "description": "Query Body",
+            "schema": {
+              "example": {
+                "fullName": "KAYITARE Cynthia",
+                "email": "kayitare@gmail.com",
+                "message": "huhuhu"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "your message well received!"
+          },
+
+          "401": {
+            "description": "Validation fails"
+          }
+        }
+      },
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Return the list of all queries.",
+        "description": "This will shows all created queries.",
+        "tags": ["Queries"],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "x-auth-token",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Blog": {
+      "type": "object",
+      "required": [
+        "main title",
+        "title",
+        "blog author",
+        "blog Image",
+        "blog Summary",
+        "blog description"
+      ],
+      "properties": {
+        "blogMainTitle": {
+          "type": "string",
+          "example": "This is main title of a blog"
+        },
+        "blogTitle": {
+          "type": "string",
+          "example": "This is title of a blog"
+        },
+        "blogAuthor": {
+          "type": "string",
+          "example": "This is author  of a blog"
+        },
+
+        "blogImage": {
+          "type": "string"
+        },
+        "blogSummary": {
+          "type": "string",
+          "example": "This is a short summary of a blog"
+        },
+        "blogDescription": {
+          "type": "string",
+          "example": "This is a description of a blog"
+        },
+        "user": {
+          "type": "id of a user who post the blog"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "required": ["fullName", "email", "password", "repeatPassword"],
+      "properties": {
+        "fullName": {
+          "type": "string",
+          "example": "KAYITARE Cynthia"
+        },
+        "email": {
+          "type": "string",
+          "example": "kacynthian@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "password"
+        },
+        "repeatPassword": {
+          "type": "string",
+          "example": "password"
+        }
+      }
+    },
+    "Message": {
+      "type": "object",
+      "required": ["fullName", "email", "message"],
+      "properties": {
+        "fullName": {
+          "type": "string",
+          "example": "KAYITARE Cynthia"
+        },
+        "email": {
+          "type": "string",
+          "example": "kacynthian@gmail.com"
+        },
+        "message": {
+          "type": "string",
+          "example": "These are some message"
+        }
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "required": ["user", "blog id", "content"],
+      "properties": {
+        "user": {
+          "type": "string",
+          "example": "5f6c9bd973ec4641bd7c3ae4"
+        },
+        "blog": {
+          "type": "string",
+          "example": "5f6c9bd973ec4641bd7c3ae4"
+        },
+        "content": {
+          "type": "string",
+          "example": "This is some comment"
         }
       }
     }

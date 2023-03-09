@@ -30,11 +30,11 @@ describe("My brand Test", () => {
     expect(resp.statusCode).toBe(401);
   });
   test("add a Blog for authorized user", async () => {
-    const resp = await request(app)
+    const response = await request(app)
       .post("/api/v1/blog")
       .send(createBlog)
       .set("token", `token=${userToken}`);
-    expect(resp.statusCode).toBe(201);
+    expect(response.statusCode).toBe(201);
     const createdBlog = response.body.data;
     blogId = createdBlog._id;
   });
