@@ -1,6 +1,6 @@
 export const signUp = {
   fullName: "KAYITARE Cynthia",
-  email: "kannny@gmail.com",
+  email: "kanbmny@gmail.com",
   password: "Cycy@1234",
   repeatPassword: "Cycy@1234",
 };

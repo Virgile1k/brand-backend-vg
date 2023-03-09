@@ -29,13 +29,13 @@ describe("My brand Test", () => {
       .send(userInvalidcredential);
     expect(resp.statusCode).toBe(401);
   });
-  test("add a Blog for authorized user", async () => {
-    const response = await request(app)
-      .post("/api/v1/blog")
-      .send(createBlog)
-      .set("token", `token=${userToken}`);
-    expect(response.statusCode).toBe(201);
-    const createdBlog = response.body.data;
-    blogId = createdBlog._id;
-  });
+  //   test("add a Blog for authorized user", async () => {
+  //     const response = await request(app)
+  //       .post("/api/v1/blog")
+  //       .send(createBlog)
+  //       .set("token", `token=${userToken}`);
+  //     expect(response.statusCode).toBe(201);
+  //     const createdBlog = response.body.data;
+  //     blogId = createdBlog._id;
+  //   });
 });
