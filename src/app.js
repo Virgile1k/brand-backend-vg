@@ -19,7 +19,6 @@ const swaggerDocument = require("../swagger.json");
 
 //create app instance
 const app = express();
-
 //use an app instance
 app.use(cors());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
