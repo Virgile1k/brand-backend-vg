@@ -15,7 +15,7 @@ const sendFunc = async (options) => {
     from: "kacynthian@gmail.com",
     to: options?.userEmails,
     subject: `Welcome to KAYITARE Blog`,
-    html: `h has published a new blog. has been created with ${options.blogMainTitle} title the author is ${options.blogAuthor}`,
+    html: ` has published a new blog. has been created with ${options.blogMainTitle} title the author is ${options.blogAuthor}`,
     // attachments: [
     //   {
     //     filename: "challenge.pdf",
