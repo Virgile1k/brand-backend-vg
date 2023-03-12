@@ -7,7 +7,6 @@ const commentSchema = new mongoose.Schema({
   },
   content: {
     type: String,
-    required: [true, "please provide content of the comment "],
   },
   postedAt: {
     type: Date,
