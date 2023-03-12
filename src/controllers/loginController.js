@@ -25,7 +25,10 @@ const loginController = async (req, res) => {
         failureMessage(res, status, failuremsg);
       } else {
         const status = 200;
-        const token = TokenAuth.generateToken({ role: user.role });
+        const token = TokenAuth.generateToken({
+          role: user.role,
+          fullName: user.fullName,
+        });
         console.log(token);
         const msge = ` user successfully logged in`;
         const data = {
