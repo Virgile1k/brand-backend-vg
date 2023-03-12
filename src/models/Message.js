@@ -10,9 +10,8 @@ const messageSchema = new mongoose.Schema({
     required: [true, "please provide an email"],
     lowerCase: true,
   },
-  message: {
+  content: {
     type: String,
-    required: [true, "please provide a fullName"],
   },
   sendAt: {
     type: Date,
