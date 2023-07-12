@@ -7,15 +7,15 @@ const sendFunc = async (options) => {
     port: 465,
     secure: true,
     auth: {
-      user: "kacynthian@gmail.com",
-      pass: "zsjjbfwuzqyeiyiw",
+      user: "ndayambajevgschooling@gmail.com",
+      pass: "ptwtfbdfcvfdjxuq",
     },
   });
   let mailOptions = {
-    from: "kacynthian@gmail.com",
+    from: "ndayambajevgschooling@gmail.com",
     to: options.email,
-    subject: `Welcome to KAYITARE Blog`,
-    html: `${options.fullName} welcome again to KAYITARE'S BLOG you are going to get an email for any new blog`,
+    subject: `Welcome to Virgile Blog`,
+    html: `${options.fullName} welcome again to Virgile BLOG you are going to get an email for any new blog`,
     // attachments: [
     //   {
     //     filename: "challenge.pdf",

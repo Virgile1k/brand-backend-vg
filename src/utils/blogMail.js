@@ -7,14 +7,14 @@ const sendFunc = async (options) => {
     port: 465,
     secure: true,
     auth: {
-      user: "kacynthian@gmail.com",
-      pass: "zsjjbfwuzqyeiyiw",
+      user: "ndayambajevgschooling@gmail.com",
+      pass: "ptwtfbdfcvfdjxuq",
     },
   });
   let mailOptions = {
-    from: "kacynthian@gmail.com",
+    from: "ndayambajevgschooling@gmail.com",
     to: options?.userEmails,
-    subject: `Welcome to KAYITARE Blog`,
+    subject: `Welcome to VIRGILE'S Blog`,
     html: ` has published a new blog. has been created with ${options.blogMainTitle} title the author is ${options.blogAuthor}`,
     // attachments: [
     //   {

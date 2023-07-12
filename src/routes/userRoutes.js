@@ -1,7 +1,6 @@
 import express from "express";
 import userController from "../controllers/userController.js";
 import Validator from "../middleware/validation.js";
-import verifyAccess from "../middleware/verifyAccess.js";
 import DataChecker from "../middleware/dataChecker.js";
 
 const router = express.Router();
@@ -14,7 +13,7 @@ router.post(
   userController.createUser
 );
 router.get("/all", userController.getAllUser);
-router.get("/:id", verifyAccess, userController.getOneUser);
-router.delete("/:id", verifyAccess, userController.deleteUser);
+router.get("/:id",  userController.getOneUser);
+router.delete("/:id",  userController.deleteUser);
 
 export default router;

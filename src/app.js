@@ -6,7 +6,7 @@ import swaggerDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
 // import YAML from "yamljs";
-// import morgan from "morgan";
+import morgan from "morgan";
 import mongoose from "mongoose";
 import routes from "./routes/index.js";
 
@@ -21,6 +21,12 @@ const swaggerDocument = require("../swagger.json");
 const app = express();
 //use an app instance
 app.use(cors());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(bodyParser.json());
 
@@ -28,7 +34,7 @@ app.use("/api/v1/", routes);
 //Define port and host
 
 //morgan for logs
-// if (process.env.NODE_ENV == "development") app.use(morgan);
+if (process.env.NODE_ENV == "development") app.use(morgan);
 
 //our mongodb instance
 let con = null;
